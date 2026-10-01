@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Início | Meu Projeto{% endblock title %}
+
+{% block content %}
+<h1>Cadastro</h1>
+<form method="POST" action="{% url 'cadastro' %}">
+                {% csrf_token %}
+                
+                <!-- Campo: Usuário -->
+                <div class="mb-3">
+                    <label for="id_usuario" >Usuário:</label>
+                    <input type="text" name="usuario" id="id_usuario" placeholder="Digite seu usuário" required>
+                </div>
+
+                <!-- Campo: E-mail -->
+                <div class="mb-3">
+                    <label for="id_email" >E-mail:</label>
+                    <input type="email" name="email" id="id_email"  placeholder="Digite seu e-mail" required>
+                </div>
+
+                <!-- Campo: Senha -->
+                <div class="mb-3">
+                    <label for="id_senha" >Senha:</label>
+                    <input type="password" name="senha" id="id_senha"  placeholder="Crie uma senha" required>
+                </div>
+
+                <!-- Campo: Confirmar Senha -->
+                <div class="mb-4">
+                    <label for="id_confirmar_senha" >Confirmar Senha:</label>
+                    <input type="password" name="confirmar_senha" id="id_confirmar_senha"  placeholder="Repita a senha" required>
+                </div>
+
+                <!-- Botão de Submit -->
+                <button type="submit" >Cadastrar</button>
+            </form>
+
+{% endblock content %}

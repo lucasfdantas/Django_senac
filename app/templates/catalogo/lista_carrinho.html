@@ -1,0 +1,81 @@
+<!-- templates/catalogo/lista_catalogo.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Meu Carrinho | Minha Loja{% endblock title %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/carrinho.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+<div class="carrinho-container">
+    <header class="carrinho-header">
+        <h1>Meu Carrinho de Compras</h1>
+        <p>Revise os itens selecionados antes de finalizar o pedido.</p>
+    </header>
+
+    {% if carrinho %}
+        <div class="carrinho-tabela-wrapper">
+            <table class="carrinho-tabela">
+                <thead>
+                    <tr>
+                        <th class="col-produto">Produto</th>
+                        <th class="col-preco">Preço Unitário</th>
+                        <th class="col-qtd">Quantidade</th>
+                        <th class="col-acoes">Alterar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in carrinho.values %}
+                    <tr>
+                        <td class="col-produto">
+                            <span class="nome-produto">{{ item.nome }}</span>
+                        </td>
+                        <td class="col-preco">R$ {{ item.preco }}</td>
+                        <td class="col-qtd">
+                            <span class="badge-qtd">{{ item.qtd }}</span>
+                        </td>
+                        <td class="col-acoes">
+                            <div class="botoes-acoes">
+                                <!-- Diminuir item -->
+                                <form action="{% url 'lista_carrinho' %}" method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="item_id" value="{{ item.id }}">
+                                    <input type="hidden" name="acao" value="menos_item">
+                                    <button type="submit" class="btn-qty btn-menos" title="Diminuir ou remover">−</button>
+                                </form>
+
+                                <!-- Aumentar item -->
+                                <form action="{% url 'lista_carrinho' %}" method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="item_id" value="{{ item.id }}">
+                                    <input type="hidden" name="acao" value="mais_item">
+                                    <button type="submit" class="btn-qty btn-mais" title="Adicionar mais um">+</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3" class="total-label">Total do Pedido:</td>
+                        <td class="total-valor">R$ {{ total|floatformat:2 }}</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <div class="carrinho-actions">
+            <a href="{% url 'catalogo' %}" class="btn-secundario">← Continuar Comprando</a>
+            <a href="{% url 'view_checkout' %}" class="btn-primario">Finalizar Compra →</a>
+        </div>
+    {% else %}
+        <div class="carrinho-vazio">
+            <p>Seu carrinho está vazio no momento.</p>
+            <a href="{% url 'catalogo' %}" class="btn-primario">Ir ao Catálogo</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock content %}

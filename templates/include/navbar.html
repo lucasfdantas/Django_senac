@@ -1,0 +1,29 @@
+<!-- templates/include/navbar.html -->
+{% load static %}
+<nav class="navbar">
+    <div class="logo">
+        <a href="{% url 'home' %}">
+            <img src="{% static 'img/logo.png' %}" alt="Logo" height="40">
+        </a>
+    </div>
+
+    <!-- links do menu -->
+</nav>
+<nav class="navbar">
+    <div class="logo"><a href="{% url 'home' %}">Home</a></div>
+    <ul class="nav-links">
+        <li><a href="{% url 'catalogo' %}">Catálogo</a></li>
+        <li><a href="{% url 'sobre' %}">Sobre</a></li>
+        <li><a href="{% url 'contato' %}">Contato</a></li>
+        <li><a href="{% url 'lista_carrinho' %}">Carrinho</a></li>
+        {% if user.is_authenticated %}
+        {% if user.is_staff or user.is_superuser %}
+        <li><a href="{% url 'painel' %}">Painel</a></li>
+        {% endif %}
+        <li><a href="{% url 'logout' %}">Sair ({{ user.first_name|default:user.username }})</a></li>
+        {% else %}
+        <li><a href="{% url 'login' %}">Entrar</a></li>
+        <li><a href="{% url 'cadastro' %}">Cadastrar</a></li>
+        {% endif %}
+    </ul>
+</nav>

@@ -1,0 +1,167 @@
+/* static/css/carrinho.css */
+
+.carrinho-container {
+    max-width: 900px;
+    margin: 2rem auto;
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.carrinho-header {
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 1rem;
+}
+
+.carrinho-header h1 {
+    font-size: 1.75rem;
+    color: #1e293b;
+    margin-bottom: 0.25rem;
+}
+
+.carrinho-header p {
+    color: #64748b;
+    font-size: 0.95rem;
+}
+
+.carrinho-tabela-wrapper {
+    overflow-x: auto;
+}
+
+.carrinho-tabela {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.carrinho-tabela th {
+    background-color: #f8fafc;
+    color: #475569;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.carrinho-tabela td {
+    padding: 1rem;
+    border-bottom: 1px solid #f1f5f9;
+    color: #334155;
+    vertical-align: middle;
+}
+
+.nome-produto {
+    font-weight: 500;
+    color: #0f172a;
+}
+
+.badge-qtd {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    background-color: #f1f5f9;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.botoes-acoes {
+    display: flex;
+    gap: 0.4rem;
+}
+
+.btn-qty {
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    border: 1px solid #cbd5e1;
+    background-color: #ffffff;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-qty:hover {
+    background-color: #f1f5f9;
+    border-color: #94a3b8;
+}
+
+.btn-menos {
+    color: #dc2626;
+}
+
+.btn-mais {
+    color: #16a34a;
+}
+
+.total-label {
+    text-align: right;
+    font-weight: 600;
+    color: #1e293b;
+    font-size: 1.1rem;
+    padding: 1rem;
+}
+
+.total-valor {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #16a34a;
+    padding: 1rem;
+}
+
+.carrinho-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e2e8f0;
+}
+
+.btn-primario {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: #2563eb;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: background-color 0.15s ease;
+}
+
+.btn-primario:hover {
+    background-color: #1d4ed8;
+}
+
+.btn-secundario {
+    display: inline-block;
+    padding: 0.75rem 1.25rem;
+    background-color: transparent;
+    color: #475569;
+    text-decoration: none;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.15s ease;
+}
+
+.btn-secundario:hover {
+    background-color: #f8fafc;
+    color: #1e293b;
+}
+
+.carrinho-vazio {
+    text-align: center;
+    padding: 3rem 1rem;
+}
+
+.carrinho-vazio p {
+    color: #64748b;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
