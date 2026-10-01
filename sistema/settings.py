@@ -157,8 +157,8 @@ else:
     EMAIL_HOST = 'smtp.gmail.com'
     EMAIL_PORT = 587
     EMAIL_USE_TLS = True
-    EMAIL_HOST_USER = 'lucasfdantasrj@gmail.com'        # Seu e-mail completo do Gmail
-    EMAIL_HOST_PASSWORD = ''
+    EMAIL_HOST_USER = EMAIL_SMTP        # Seu e-mail completo do Gmail
+    EMAIL_HOST_PASSWORD = SENHA_SMTP
     DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 
