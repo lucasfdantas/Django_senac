@@ -33,6 +33,10 @@ urlpatterns = [
     path('carrinho/lista/', views_app.lista_carrinho, name='lista_carrinho'),
     path('carrinho/checkout/', views_app.view_checkout, name='view_checkout'),
     path('pedido/sucesso/<int:pedido_id>/', views_app.sucesso_pedido, name='sucesso_pedido'),
+    # APP: Rotas de compra e pagamento 
+    path('checkout/', views_app.view_checkout, name='view_checkout'),
+    path('pedido/<int:pedido_id>/pagamento/', views_app.pagamento_pedido, name='pagamento_pedido'),
+    path('pedido/<int:pedido_id>/sucesso/', views_app.sucesso_pedido, name='sucesso_pedido'),
     #Cadastro
     path('cadastro/', views_cadastro.cadastro, name='cadastro'),
     path('ativar-conta/<str:uidb64>/<str:token>/', views_cadastro.ativar_conta, name='ativar_conta'),

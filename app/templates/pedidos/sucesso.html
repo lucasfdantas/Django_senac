@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Pedido Confirmado | Pedido #{{ pedido.id }}{% endblock title %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/pagamento.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+<div class="checkout-card sucesso-box">
+    <div class="icone-sucesso">✓</div>
+    <h1>Pedido Realizado com Sucesso!</h1>
+    <p>Obrigado pela compra, <strong>{{ request.user.first_name|default:request.user.username }}</strong>.</p>
+    <p>Número do Pedido: <strong>#{{ pedido.id }}</strong></p>
+
+    <!-- Instruções conforme o meio escolhido -->
+    {% if pedido.metodo_pagamento == 'pix' %}
+        <div class="bloco-instrucao">
+            <h3>Pagamento via PIX</h3>
+            <p>Escaneie o QR Code abaixo pelo aplicativo do seu banco:</p>
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=PEDIDO-{{ pedido.id }}-VALOR-{{ pedido.total }}" alt="QR Code PIX">
+            <p class="alerta-pix">Status: <strong>Aguardando Pagamento</strong></p>
+        </div>
+    {% elif pedido.metodo_pagamento == 'cartao' %}
+        <div class="bloco-instrucao aprovado">
+            <h3>Pagamento Aprovado</h3>
+            <p>Seu pagamento via Cartão de Crédito foi processado e aprovado.</p>
+        </div>
+    {% elif pedido.metodo_pagamento == 'boleto' %}
+        <div class="bloco-instrucao">
+            <h3>Boleto Gerado</h3>
+            <p>Linha digitável: <code>34191.79001 01043.510047 91020.150008 8 91230026000</code></p>
+        </div>
+    {% endif %}
+
+    <div class="resumo-pedido">
+        <h3>Itens do Pedido</h3>
+        <ul>
+            {% for item in pedido.itens.all %}
+                <li>{{ item.quantidade }}x {{ item.nome }} — R$ {{ item.subtotal|floatformat:2 }}</li>
+            {% endfor %}
+        </ul>
+        <p class="total-linha">Total: <strong>R$ {{ pedido.total|floatformat:2 }}</strong></p>
+    </div>
+
+    <div class="checkout-actions centralizado">
+        <a href="{% url 'catalogo' %}" class="btn-confirmar">Voltar ao Catálogo</a>
+    </div>
+</div>
+{% endblock content %}

@@ -5,7 +5,7 @@ from .models import Pedido, ItemPedido
 from django.contrib.auth.views import redirect_to_login
 from django.shortcuts import render, redirect
 from django.contrib import messages
-
+from django.contrib.auth.decorators import login_required
 
 
 def home(request):
@@ -127,47 +127,66 @@ def lista_carrinho(request):
     # Aponta para o arquivo renomeado dentro da pasta catalogo/
     return render(request, 'catalogo/lista_carrinho.html', contexto)
 
+@login_required
 def view_checkout(request):
-    if not request.user.is_authenticated:
-        return redirect_to_login(request.get_full_path(), login_url='login')
-    carrinho = request.session.get('carrinho')
+    """Cria o pedido pendente no banco e redireciona direto para a escolha do pagamento"""
+    carrinho = request.session.get('carrinho', {})
+
     if not carrinho:
-        return redirect('loja_carrinho')
+        return redirect('catalogo')
 
     total = request.session.get('total_carrinho', 0.0)
 
-    if not request.user.is_authenticated:
-        return redirect_to_login(request.get_full_path(), login_url='login')
+    # Cria o pedido e esvazia o carrinho da sessão
+    with transaction.atomic():
+        pedido = Pedido.objects.create(
+            usuario=request.user.username,
+            total=total,
+            status='pendente'
+        )
 
-    if request.method == 'POST':
-        with transaction.atomic():
-            pedido = Pedido.objects.create(
-                usuario=request.user.username,
-                total=total
+        for item in carrinho.values():
+            ItemPedido.objects.create(
+                pedido=pedido,
+                nome=item['nome'],
+                preco=item['preco'],
+                quantidade=item['qtd']
             )
 
-            for item in carrinho.values():
-                ItemPedido.objects.create(
-                    pedido=pedido,
-                    nome=item['nome'],
-                    preco=item['preco'],
-                    quantidade=item['qtd']
-                )
+        # Limpa o carrinho após gravar no banco
+        request.session.pop('carrinho', None)
+        request.session.pop('total_carrinho', None)
+        request.session.modified = True
 
-            # Limpa carrinho da sessão
-            request.session.pop('carrinho', None)
-            request.session.pop('total_carrinho', None)
-            request.session.modified = True
+    return redirect('pagamento_pedido', pedido_id=pedido.id)
+@login_required
+def pagamento_pedido(request, pedido_id):
+    """Tela onde o usuário seleciona Pix, Cartão ou Boleto"""
+    pedido = get_object_or_404(Pedido, id=pedido_id, usuario=request.user.username)
 
+    # Se já foi pago, envia direto para a confirmação
+    if pedido.status == 'pago':
         return redirect('sucesso_pedido', pedido_id=pedido.id)
 
-    contexto = {
-        'carrinho': carrinho,
-        'total_carrinho': total
-    }
-    return render(request, 'carrinho/checkout.html', contexto)
+    if request.method == 'POST':
+        metodo = request.POST.get('metodo_pagamento')
+
+        if metodo in ['pix', 'cartao', 'boleto']:
+            pedido.metodo_pagamento = metodo
+            # Simulação: se escolheu cartão, aprova na hora; se pix/boleto, fica pendente
+            if metodo == 'cartao':
+                pedido.status = 'pago'
+            else:
+                pedido.status = 'pendente'
+
+            pedido.save()
+            return redirect('sucesso_pedido', pedido_id=pedido.id)
+
+    return render(request, 'pedidos/pagamento.html', {'pedido': pedido})
 
 
+@login_required
 def sucesso_pedido(request, pedido_id):
-    pedido = get_object_or_404(Pedido, id=pedido_id)
-    return render(request, 'carrinho/sucesso.html', {'pedido': pedido})
+    """Tela final com resumo e detalhes da transação"""
+    pedido = get_object_or_404(Pedido, id=pedido_id, usuario=request.user.username)
+    return render(request, 'pedidos/sucesso.html', {'pedido': pedido})

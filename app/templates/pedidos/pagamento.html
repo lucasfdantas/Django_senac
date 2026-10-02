@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Pagamento | Pedido #{{ pedido.id }}{% endblock title %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/pagamento.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+<div class="checkout-card">
+    <header class="checkout-header">
+        <h1>Forma de Pagamento</h1>
+        <p>Pedido <strong>#{{ pedido.id }}</strong> • Total a pagar: <strong class="valor-destaque">R$ {{ pedido.total|floatformat:2 }}</strong></p>
+    </header>
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="opcoes-pagamento">
+            <label class="metodo-item">
+                <input type="radio" name="metodo_pagamento" value="pix" checked>
+                <div class="metodo-info">
+                    <span class="metodo-titulo">⚡ PIX</span>
+                    <span class="metodo-desc">Aprovação imediata com QR Code e Copia e Cola</span>
+                </div>
+            </label>
+
+            <label class="metodo-item">
+                <input type="radio" name="metodo_pagamento" value="cartao">
+                <div class="metodo-info">
+                    <span class="metodo-titulo">💳 Cartão de Crédito</span>
+                    <span class="metodo-desc">Aprovação instantânea em até 12x</span>
+                </div>
+            </label>
+
+            <label class="metodo-item">
+                <input type="radio" name="metodo_pagamento" value="boleto">
+                <div class="metodo-info">
+                    <span class="metodo-titulo">📄 Boleto Bancário</span>
+                    <span class="metodo-desc">Compensação em até 3 dias úteis</span>
+                </div>
+            </label>
+        </div>
+
+        <div class="checkout-actions">
+            <a href="{% url 'catalogo' %}" class="btn-voltar">Continuar Comprando</a>
+            <button type="submit" class="btn-confirmar">Confirmar e Finalizar</button>
+        </div>
+    </form>
+</div>
+{% endblock content %}
