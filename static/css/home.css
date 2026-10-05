@@ -1,0 +1,191 @@
+/* static/css/home.css */
+
+/* Hero Banner */
+.hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #ffffff;
+    padding: 4.5rem 1.5rem;
+    text-align: center;
+    border-radius: 12px;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.15);
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+}
+
+.hero p {
+    font-size: 1.15rem;
+    color: #94a3b8;
+    max-width: 650px;
+    margin: 0 auto 2rem auto;
+    line-height: 1.6;
+}
+
+.hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.btn-hero {
+    display: inline-block;
+    background-color: #2563eb;
+    color: #ffffff;
+    padding: 0.85rem 2rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-hero:hover {
+    background-color: #1d4ed8;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
+}
+
+/* Vantagens / Diferenciais */
+.vantagens {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3.5rem;
+}
+
+.vantagem-item {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    padding: 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.vantagem-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
+}
+
+.vantagem-item h3 {
+    font-size: 1.2rem;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+}
+
+.vantagem-item p {
+    font-size: 0.95rem;
+    color: #64748b;
+    line-height: 1.5;
+}
+
+/* Categorias em Destaque */
+.destaques-home {
+    margin-bottom: 3.5rem;
+}
+
+.secao-titulo {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.secao-titulo h2 {
+    font-size: 2rem;
+    color: #0f172a;
+    margin-bottom: 0.25rem;
+}
+
+.secao-titulo p {
+    color: #64748b;
+    font-size: 1rem;
+}
+
+.categorias-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.categoria-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+}
+
+.categoria-card:hover {
+    transform: translateY(-3px);
+    border-color: #2563eb;
+    box-shadow: 0 10px 20px rgba(37, 99, 235, 0.08);
+}
+
+.categoria-card h3 {
+    font-size: 1.3rem;
+    color: #1e293b;
+    margin-bottom: 0.75rem;
+}
+
+.categoria-card p {
+    color: #475569;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+}
+
+.categoria-card a {
+    color: #2563eb;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    transition: gap 0.2s ease;
+}
+
+.categoria-card:hover a {
+    gap: 0.5rem;
+}
+
+/* Chamada Final (CTA) */
+.chamada-final {
+    background-color: #f8fafc;
+    border: 1px dashed #cbd5e1;
+    border-radius: 12px;
+    padding: 3rem 1.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.chamada-final h2 {
+    font-size: 1.75rem;
+    color: #0f172a;
+    margin-bottom: 0.75rem;
+}
+
+.chamada-final p {
+    color: #64748b;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+}
+
+/* Classes para Animações via JavaScript */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    will-change: opacity, transform;
+}
+
+.fade-in-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}

@@ -48,6 +48,7 @@ def cadastro(request):
         # Adiciona ao grupo 'cliente' automaticamente (cria o grupo se não existir)
         grupo_cliente, _ = Group.objects.get_or_create(name='cliente')
         user.groups.add(grupo_cliente)
+        
         # --- ENVIO DO LINK DE ATIVAÇÃO ---
         uid = urlsafe_base64_encode(force_bytes(user.pk))
         token = default_token_generator.make_token(user)
@@ -55,9 +56,8 @@ def cadastro(request):
         relative_link = reverse("ativar_conta", kwargs={"uidb64": uid, "token": token})
         
         # Detecta protocolo (http ou https) e domínio automaticamente (localhost:8000 em dev)
-        protocolo = "https" if request.is_secure() else "http"
         domain = get_current_site(request).domain
-        activation_url = f"{protocolo}://{domain}{relative_link}"
+        activation_url = f"http://localhost:8000/{relative_link}"
 
         assunto = "Confirme seu e-mail de cadastro"
         mensagem = (

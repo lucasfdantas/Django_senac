@@ -15,8 +15,16 @@
         <li><a href="{% url 'catalogo' %}">Catálogo</a></li>
         <li><a href="{% url 'sobre' %}">Sobre</a></li>
         <li><a href="{% url 'contato' %}">Contato</a></li>
-        <li><a href="{% url 'lista_carrinho' %}">Carrinho</a></li>
-        {% if user.is_authenticated %}
+<!-- templates/include/navbar.html -->
+<li>
+    <a href="{% url 'lista_carrinho' %}" class="carrinho-link">
+        🛒 Carrinho
+        <span id="carrinho-contador" class="badge-carrinho {% if total_itens_carrinho == 0 %}oculto{% endif %}">
+            {{ carrinho_badge }}
+        </span>
+    </a>
+</li>   
+  {% if user.is_authenticated %}
         {% if user.is_staff or user.is_superuser %}
         <li><a href="{% url 'painel' %}">Painel</a></li>
         {% endif %}

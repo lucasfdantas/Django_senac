@@ -16,13 +16,13 @@ import os
 
 
 # 1. Corrija o typo: no .env é SECRET_KEY (sem a letra C extra)
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = "SAdijioasjdop312839012890dasiodhijiU)_)()_()8897"
 
 # 2. Compare a string com a string 'True'
-DEBUG = os.environ.get('DEBUG', 'False').lower() in ('true', '1', 't')
+DEBUG = True
 
-EMAIL_SMTP = os.environ.get('EMAIL_SMTP')
-SENHA_SMTP = os.environ.get('SENHA_SMTP')
+# EMAIL_SMTP = os.environ.get('EMAIL_SMTP')
+# SENHA_SMTP = os.environ.get('SENHA_SMTP')
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -33,12 +33,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = SECRET_KEY
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = DEBUG
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -53,7 +52,8 @@ INSTALLED_APPS = [
     'app',
     'cadastro',
     'login',
-    'painel'
+    'painel',
+    'sistema'
     
 ]
 
@@ -79,6 +79,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'app.context_processors.carrinho_context',
             ],
         },
     },
@@ -157,9 +158,9 @@ else:
     EMAIL_HOST = 'smtp.gmail.com'
     EMAIL_PORT = 587
     EMAIL_USE_TLS = True
-    EMAIL_HOST_USER = EMAIL_SMTP        # Seu e-mail completo do Gmail
-    EMAIL_HOST_PASSWORD = SENHA_SMTP
-    DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+    EMAIL_HOST_USER = 'teste@teste.com'        # Seu e-mail completo do Gmail
+    EMAIL_HOST_PASSWORD = 'SENHA_SMTP'
+    DEFAULT_FROM_EMAIL = 'EMAIL_HOST_USER'
 
 
 # Login Redirect URL

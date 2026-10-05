@@ -1,7 +1,94 @@
-{% extends 'base.html'%}
+<!-- app/templates/sobre/sobre.html -->
+{% extends 'base.html' %}
+{% load static %}
 
-{% block title%}Sobre{% endblock title%}
+{% block title %}Sobre Nós | TechStore{% endblock title %}
 
-{% block content%}
-<h1>Sobre</h1>
-{%endblock content%}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/sobre.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+<section class="sobre-hero">
+    <h1>Sobre a TechStore</h1>
+    <p>Conectando entusiastas e profissionais às melhores inovações e equipamentos de tecnologia do mercado.</p>
+</section>
+
+<section class="sobre-historia">
+    <h2>Nossa Trajetória</h2>
+    <p>Fundada com a proposta de descomplicar a aquisição de hardware de alto desempenho, a TechStore nasceu para atender quem busca confiabilidade, velocidade e atendimento técnico especializado.</p>
+    <p>Construímos uma infraestrutura segura, transações protegidas com verificação em duas etapas e catálogo selecionado para garantir que a sua experiência, do carrinho à entrega, seja ágil e sem atritos.</p>
+</section>
+
+<section class="metricas-grid">
+    <div class="metrica-card">
+        <div class="metrica-numero" data-alvo="5000">0</div>
+        <p>Clientes Atendidos</p>
+    </div>
+    <div class="metrica-card">
+        <div class="metrica-numero" data-alvo="12000">0</div>
+        <p>Pedidos Entregues</p>
+    </div>
+    <div class="metrica-card">
+        <div class="metrica-numero" data-alvo="99">0</div>
+        <p>% de Avaliações Positivas</p>
+    </div>
+    <div class="metrica-card">
+        <div class="metrica-numero" data-alvo="24">0</div>
+        <p>Horas para Envio Médio</p>
+    </div>
+</section>
+
+<section class="pilares-grid">
+    <article class="pilar-card">
+        <h3>🎯 Missão</h3>
+        <p>Disponibilizar os melhores equipamentos e componentes de tecnologia com preços competitivos e segurança máxima em cada transação.</p>
+    </article>
+    <article class="pilar-card">
+        <h3>👁️ Visão</h3>
+        <p>Tornar-se a referência nacional em e-commerce técnico, reconhecida pela transparência, pós-venda eficiente e suporte proativo.</p>
+    </article>
+    <article class="pilar-card">
+        <h3>⭐ Valores</h3>
+        <p>Ética nas relações comerciais, foco na experiência do cliente, integridade na proteção de dados e melhoria contínua de software.</p>
+    </article>
+</section>
+
+<section class="faq-secao">
+    <h2>Perguntas Frequentes</h2>
+
+    <div class="faq-item">
+        <button type="button" class="faq-pergunta">
+            Quais são os meios de pagamento aceitos?
+            <span class="faq-icone">+</span>
+        </button>
+        <div class="faq-resposta">
+            <p>Trabalhamos com pagamentos instantâneos via PIX (com liberação imediata), cartões de crédito parcelados em até 12 vezes e boleto bancário.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <button type="button" class="faq-pergunta">
+            Como funciona a segurança da minha conta?
+            <span class="faq-icone">+</span>
+        </button>
+        <div class="faq-resposta">
+            <p>Nossa plataforma conta com autenticação multifator (MFA/2FA) via e-mail e criptografia de senhas, impedindo acessos não autorizados aos seus dados e histórico de pedidos.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <button type="button" class="faq-pergunta">
+            Qual é a política de envio e garantia?
+            <span class="faq-icone">+</span>
+        </button>
+        <div class="faq-resposta">
+            <p>Todos os produtos comercializados possuem garantia oficial contra defeitos de fabricação e contam com rastreio detalhado desde a separação até a entrega no seu endereço.</p>
+        </div>
+    </div>
+</section>
+{% endblock content %}
+
+{% block extra_js %}
+    <script src="{% static 'js/sobre.js' %}"></script>
+{% endblock extra_js %}

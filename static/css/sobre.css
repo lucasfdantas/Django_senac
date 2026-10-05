@@ -1,0 +1,201 @@
+/* static/css/sobre.css */
+
+.sobre-hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #ffffff;
+    padding: 4rem 1.5rem;
+    text-align: center;
+    border-radius: 12px;
+    margin-bottom: 3rem;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.15);
+}
+
+.sobre-hero h1 {
+    font-size: 2.4rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+
+.sobre-hero p {
+    font-size: 1.15rem;
+    color: #94a3b8;
+    max-width: 680px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Seção de História */
+.sobre-historia {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 2.5rem;
+    margin-bottom: 3rem;
+    line-height: 1.7;
+    color: #475569;
+}
+
+.sobre-historia h2 {
+    font-size: 1.8rem;
+    color: #0f172a;
+    margin-bottom: 1rem;
+}
+
+.sobre-historia p {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+/* Métricas e Números */
+.metricas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3.5rem;
+}
+
+.metrica-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.metrica-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
+}
+
+.metrica-numero {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #2563eb;
+    margin-bottom: 0.25rem;
+}
+
+.metrica-card p {
+    color: #64748b;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+/* Missão, Visão e Valores */
+.pilares-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3.5rem;
+}
+
+.pilar-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 2rem;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.pilar-card:hover {
+    transform: translateY(-3px);
+    border-color: #2563eb;
+}
+
+.pilar-card h3 {
+    font-size: 1.25rem;
+    color: #1e293b;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.pilar-card p {
+    color: #64748b;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* FAQ Interativo (Acordeão) */
+.faq-secao {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+.faq-secao h2 {
+    font-size: 1.8rem;
+    color: #0f172a;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.faq-item {
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.faq-item:last-child {
+    border-bottom: none;
+}
+
+.faq-pergunta {
+    width: 100%;
+    padding: 1.2rem 0;
+    background: none;
+    border: none;
+    text-align: left;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #1e293b;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: color 0.2s ease;
+}
+
+.faq-pergunta:hover {
+    color: #2563eb;
+}
+
+.faq-icone {
+    font-size: 1.2rem;
+    transition: transform 0.25s ease;
+}
+
+.faq-resposta {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+}
+
+.faq-resposta p {
+    color: #64748b;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    padding-bottom: 1.2rem;
+}
+
+.faq-item.ativo .faq-icone {
+    transform: rotate(45deg);
+}
+
+.faq-item.ativo .faq-resposta {
+    max-height: 200px;
+}
+
+/* Classes para animação de rolagem */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    will-change: opacity, transform;
+}
+
+.fade-in-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}

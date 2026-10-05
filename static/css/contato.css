@@ -1,0 +1,121 @@
+/* static/css/contato.css */
+
+.contato-hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #ffffff;
+    padding: 3.5rem 1.5rem;
+    text-align: center;
+    border-radius: 12px;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.15);
+}
+
+.contato-hero h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+}
+
+.contato-hero p {
+    font-size: 1.05rem;
+    color: #94a3b8;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+/* Disposição em duas colunas */
+.contato-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+@media (max-width: 768px) {
+    .contato-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Painel de Informações */
+.contato-info {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+}
+
+.contato-info h2 {
+    font-size: 1.4rem;
+    color: #0f172a;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 0.75rem;
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.info-icone {
+    width: 44px;
+    height: 44px;
+    background-color: #eff6ff;
+    color: #2563eb;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+}
+
+.info-texto h3 {
+    font-size: 1rem;
+    color: #1e293b;
+    margin-bottom: 0.25rem;
+}
+
+.info-texto p,
+.info-texto a {
+    font-size: 0.95rem;
+    color: #64748b;
+    text-decoration: none;
+    line-height: 1.4;
+}
+
+.info-texto a:hover {
+    color: #2563eb;
+}
+
+/* Painel do Formulário */
+.contato-form-container {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 2rem;
+}
+
+.contato-form-container h2 {
+    font-size: 1.4rem;
+    color: #0f172a;
+    margin-bottom: 1.25rem;
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 0.4rem;
+}

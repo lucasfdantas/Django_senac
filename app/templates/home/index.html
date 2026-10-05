@@ -1,10 +1,68 @@
+<!-- templates/home/index.html -->
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Início | Meu Projeto{% endblock title %}
+{% block title %}Início | TechStore - Sua Loja de Tecnologia{% endblock title %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock extra_css %}
 
 {% block content %}
 <section class="hero">
-    <h1>Bem-vindo à página principal</h1>
-    <p>Este é o conteúdo exclusivo da Home.</p>
+    <h1>Bem-vindo à TechStore</h1>
+    <p>Os melhores equipamentos e acessórios de informática com preços imperdíveis e entrega rápida.</p>
+    <div class="hero-actions">
+        <a href="{% url 'catalogo' %}" class="btn-hero">Ver Catálogo Completo</a>
+    </div>
+</section>
+
+<section class="vantagens">
+    <div class="vantagem-item">
+        <h3>🚀 Entrega Ágil</h3>
+        <p>Envio rápido e seguro para todo o território nacional.</p>
+    </div>
+    <div class="vantagem-item">
+        <h3>🔒 Compra Segura</h3>
+        <p>Ambiente protegido com autenticação e validação em duas etapas.</p>
+    </div>
+    <div class="vantagem-item">
+        <h3>💳 Pagamento Flexível</h3>
+        <p>Opções via PIX instantâneo, cartão de crédito parcelado ou boleto bancário.</p>
+    </div>
+</section>
+
+<section class="destaques-home">
+    <header class="secao-titulo">
+        <h2>Categorias em Alta</h2>
+        <p>Navegue pelo nosso portfólio de produtos selecionados</p>
+    </header>
+    <div class="categorias-grid">
+        <article class="categoria-card">
+            <h3>Periféricos Gamer</h3>
+            <p>Teclados mecânicos, mouses de alta precisão e headsets com som surround.</p>
+            <a href="{% url 'catalogo' %}">Conferir periféricos &rarr;</a>
+        </article>
+        <article class="categoria-card">
+            <h3>Monitores & Telas</h3>
+            <p>Modelos ultrawide de alta taxa de atualização para jogos e produtividade máxima.</p>
+            <a href="{% url 'catalogo' %}">Ver monitores &rarr;</a>
+        </article>
+        <article class="categoria-card">
+            <h3>Conforto & Ergonomia</h3>
+            <p>Cadeiras ergonômicas preparadas para longas jornadas de trabalho e estudo.</p>
+            <a href="{% url 'catalogo' %}">Ver cadeiras &rarr;</a>
+        </article>
+    </div>
+</section>
+
+<section class="chamada-final">
+    <h2>Pronto para montar o seu setup?</h2>
+    <p>Adicione itens ao seu carrinho agora mesmo e aproveite as nossas condições especiais de lançamento.</p>
+    <a href="{% url 'catalogo' %}" class="btn-hero">Ir às Compras</a>
 </section>
 {% endblock content %}
+
+{% block extra_js %}
+    <script src="{% static 'js/home.js' %}"></script>
+{% endblock extra_js %}

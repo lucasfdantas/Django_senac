@@ -2,108 +2,142 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Catálogo de Produtos | Minha Loja{% endblock title %}
+{% block title %}Catálogo de Produtos | TechStore{% endblock title %}
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'css/catalogo.css' %}">
 {% endblock extra_css %}
 
 {% block content %}
+<!-- Token CSRF em elemento oculto para leitura via JavaScript -->
+{% csrf_token %}
+
 <header class="catalogo-header">
     <h1>Catálogo de Produtos</h1>
     <p>Confira nossas ofertas e adicione quantos itens desejar.</p>
-
-    <!-- Alertas de sucesso ao adicionar produto -->
-    {% if messages %}
-        <div class="mensagens-container">
-            {% for message in messages %}
-                <div class="alerta alerta-{{ message.tags }}">
-                    {{ message }} — <a href="{% url 'lista_carrinho' %}">Ver Carrinho</a>
-                </div>
-            {% endfor %}
-        </div>
-    {% endif %}
 </header>
+
+<div class="catalogo-toolbar">
+    <div class="busca-container">
+        <span class="busca-icone">🔍</span>
+        <input type="text" id="busca-produtos" class="busca-input" placeholder="Pesquisar por produto...">
+    </div>
+</div>
 
 <section class="catalogo-grid">
     <!-- Card 1 -->
-    <article class="produto-card">
-        <form action="{% url 'loja_carrinho' %}" method="POST">
-            {% csrf_token %}
+    <article class="produto-card" 
+             data-id="1" 
+             data-nome="Câmera Digital Profissional" 
+             data-preco="3200.00" 
+             data-url="{% url 'loja_carrinho' %}">
+        <div class="produto-imagem-wrapper">
             <img src="https://placehold.co/300x250/eeeeee/999999?text=Camera+Pro" alt="Câmera Digital Profissional">
-            <h2>Câmera Digital Profissional</h2>
-            <p>Capture momentos incríveis com resolução 4K e lentes intercambiáveis.</p>
-            <p class="produto-preco">Preço: <strong>R$ 3.200,00</strong></p>
+        </div>
+        <h2>Câmera Digital Profissional</h2>
+        <p class="produto-descricao">Capture momentos incríveis com resolução 4K e lentes intercambiáveis.</p>
+        <p class="produto-preco">R$ 3.200,00</p>
 
-            <input type="hidden" name="produto_id" value="1">
-            <input type="hidden" name="nome_produto" value="Câmera Digital Profissional">
-            <input type="hidden" name="preco_produto" value="3200.00">
-
-            <div class="produto-actions">
-                <input type="number" name="quantidade" value="1" min="1" required>
-                <button type="submit" class="btn-adicionar">Adicionar ao Carrinho</button>
+        <div class="produto-actions">
+            <div class="quantidade-wrapper">
+                <button type="button" class="btn-qty-step" data-action="menos">−</button>
+                <input type="number" class="quantidade-input" value="1" min="1" readonly>
+                <button type="button" class="btn-qty-step" data-action="mais">+</button>
             </div>
-        </form>
+            <button type="button" class="btn-adicionar">Adicionar</button>
+        </div>
     </article>
 
     <!-- Card 2 -->
-    <article class="produto-card">
-        <form action="{% url 'loja_carrinho' %}" method="POST">
-            {% csrf_token %}
+    <article class="produto-card" 
+             data-id="2" 
+             data-nome="Teclado Mecânico RGB" 
+             data-preco="350.00" 
+             data-url="{% url 'loja_carrinho' %}">
+        <div class="produto-imagem-wrapper">
             <img src="https://placehold.co/300x250/eeeeee/999999?text=Teclado+RGB" alt="Teclado Mecânico RGB">
-            <h2>Teclado Mecânico RGB</h2>
-            <p>Teclado mecânico com switches azuis e iluminação personalizável.</p>
-            <p class="produto-preco">Preço: <strong>R$ 350,00</strong></p>
+        </div>
+        <h2>Teclado Mecânico RGB</h2>
+        <p class="produto-descricao">Teclado mecânico com switches azuis e iluminação personalizável.</p>
+        <p class="produto-preco">R$ 350,00</p>
 
-            <input type="hidden" name="produto_id" value="2">
-            <input type="hidden" name="nome_produto" value="Teclado Mecânico RGB">
-            <input type="hidden" name="preco_produto" value="350.00">
-
-            <div class="produto-actions">
-                <input type="number" name="quantidade" value="1" min="1" required>
-                <button type="submit" class="btn-adicionar">Adicionar ao Carrinho</button>
+        <div class="produto-actions">
+            <div class="quantidade-wrapper">
+                <button type="button" class="btn-qty-step" data-action="menos">−</button>
+                <input type="number" class="quantidade-input" value="1" min="1" readonly>
+                <button type="button" class="btn-qty-step" data-action="mais">+</button>
             </div>
-        </form>
+            <button type="button" class="btn-adicionar">Adicionar</button>
+        </div>
     </article>
 
     <!-- Card 3 -->
-    <article class="produto-card">
-        <form action="{% url 'loja_carrinho' %}" method="POST">
-            {% csrf_token %}
+    <article class="produto-card" 
+             data-id="3" 
+             data-nome="Monitor Ultrawide 29" 
+             data-preco="1150.00" 
+             data-url="{% url 'loja_carrinho' %}">
+        <div class="produto-imagem-wrapper">
             <img src="https://placehold.co/300x250/eeeeee/999999?text=Monitor+29" alt="Monitor Ultrawide 29">
-            <h2>Monitor Ultrawide 29"</h2>
-            <p>Resolução 2560x1080 com taxa de atualização de 75Hz.</p>
-            <p class="produto-preco">Preço: <strong>R$ 1.150,00</strong></p>
+        </div>
+        <h2>Monitor Ultrawide 29"</h2>
+        <p class="produto-descricao">Resolução 2560x1080 com taxa de atualização de 75Hz.</p>
+        <p class="produto-preco">R$ 1.150,00</p>
 
-            <input type="hidden" name="produto_id" value="3">
-            <input type="hidden" name="nome_produto" value="Monitor Ultrawide 29">
-            <input type="hidden" name="preco_produto" value="1150.00">
-
-            <div class="produto-actions">
-                <input type="number" name="quantidade" value="1" min="1" required>
-                <button type="submit" class="btn-adicionar">Adicionar ao Carrinho</button>
+        <div class="produto-actions">
+            <div class="quantidade-wrapper">
+                <button type="button" class="btn-qty-step" data-action="menos">−</button>
+                <input type="number" class="quantidade-input" value="1" min="1" readonly>
+                <button type="button" class="btn-qty-step" data-action="mais">+</button>
             </div>
-        </form>
+            <button type="button" class="btn-adicionar">Adicionar</button>
+        </div>
     </article>
 
     <!-- Card 4 -->
-    <article class="produto-card">
-        <form action="{% url 'loja_carrinho' %}" method="POST">
-            {% csrf_token %}
+    <article class="produto-card" 
+             data-id="4" 
+             data-nome="Cadeira Gamer Ergonômica" 
+             data-preco="890.00" 
+             data-url="{% url 'loja_carrinho' %}">
+        <div class="produto-imagem-wrapper">
             <img src="https://placehold.co/300x250/eeeeee/999999?text=Cadeira+Gamer" alt="Cadeira Gamer">
-            <h2>Cadeira Gamer Ergonômica</h2>
-            <p>Conforto extremo com almofadas lombar e cervical ajustáveis.</p>
-            <p class="produto-preco">Preço: <strong>R$ 890,00</strong></p>
+        </div>
+        <h2>Cadeira Gamer Ergonômica</h2>
+        <p class="produto-descricao">Conforto extremo com almofadas lombar e cervical ajustáveis.</p>
+        <p class="produto-preco">R$ 890,00</p>
 
-            <input type="hidden" name="produto_id" value="4">
-            <input type="hidden" name="nome_produto" value="Cadeira Gamer Ergonômica">
-            <input type="hidden" name="preco_produto" value="890.00">
-
-            <div class="produto-actions">
-                <input type="number" name="quantidade" value="1" min="1" required>
-                <button type="submit" class="btn-adicionar">Adicionar ao Carrinho</button>
+        <div class="produto-actions">
+            <div class="quantidade-wrapper">
+                <button type="button" class="btn-qty-step" data-action="menos">−</button>
+                <input type="number" class="quantidade-input" value="1" min="1" readonly>
+                <button type="button" class="btn-qty-step" data-action="mais">+</button>
             </div>
-        </form>
+            <button type="button" class="btn-adicionar">Adicionar</button>
+        </div>
     </article>
 </section>
+
+<!-- MODAL TOAST (CANTO INFERIOR DIREITO) -->
+<div id="modal-carrinho" class="modal-overlay">
+    <div class="modal-conteudo">
+        <button type="button" class="modal-fechar" id="btn-fechar-modal" title="Fechar">&times;</button>
+        <div class="modal-topo">
+            <span class="modal-icone-sucesso">✓</span>
+            <h2>Item adicionado!</h2>
+        </div>
+        <div class="modal-detalhes-produto">
+            <p id="modal-produto-nome" class="modal-produto-titulo"></p>
+            <p id="modal-produto-info" class="modal-produto-sub"></p>
+        </div>
+        <div class="modal-botoes">
+            <button type="button" class="btn-modal-secundario" id="btn-continuar-comprando">Continuar</button>
+            <a href="{% url 'lista_carrinho' %}" class="btn-modal-primario">Ver Carrinho</a>
+        </div>
+    </div>
+</div>
 {% endblock content %}
+
+{% block extra_js %}
+    <script src="{% static 'js/catalogo.js' %}"></script>
+{% endblock extra_js %}
